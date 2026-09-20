@@ -157,9 +157,9 @@ h1{font-size:56px;font-weight:400;line-height:1.05;margin:18px auto;max-width:80
   <h1 class="title">Contact</h1>
   <p class="subtitle">Une question ou une envie particulière ? N'hésite pas à me contacter.</p>
   <div class="contactbox">
-   <div class="kicker">TÉLÉPHONE</div>
-   <div class="phone">Ton numéro ici</div>
-   <p class="note">Le numéro sera ajouté ici quand tu me le donneras. Pour une commande, utilise le formulaire afin de transmettre tes informations et tes inspirations en privé.</p>
+   <div class="kicker">E-MAIL</div>
+   <div class="phone">fradj.nour13@gmail.com</div>
+   <p class="note">Pour toute question ou demande particulière, tu peux m’écrire directement par e-mail. Pour une commande, utilise le formulaire afin de transmettre tes informations et tes inspirations en privé.</p>
    <button class="cta" onclick="showPage('order')">CRÉER MA CARTE SUR MESURE →</button>
   </div>
  </div>
@@ -179,7 +179,7 @@ h1{font-size:56px;font-weight:400;line-height:1.05;margin:18px auto;max-width:80
    <div class="field"><label>Numéro de téléphone</label><input required type="tel" name="phone" placeholder="06 00 00 00 00"></div>
    <div class="field"><label>Adresse de livraison</label><textarea required name="address" placeholder="Numéro, rue, code postal, ville..."></textarea></div>
    <div class="field"><label>Occasion / thème</label><input name="occasion" placeholder="Anniversaire, naissance, mariage..."></div>
-   <div class="field"><label>Date limite souhaitée pour recevoir la carte</label><input required type="date" name="deadline" id="deadline"></div>
+   <div class="field"><label>Date limite souhaitée pour recevoir la carte</label><input required type="date" name="deadline" id="deadline" min=""><p class="note">La date doit être au minimum 7 jours après votre commande.</p></div>
    <div class="field"><label>Décris exactement ta carte</label><textarea required name="idea" placeholder="Couleurs, texte, décorations, prénom, âge, style..."></textarea></div>
    <div class="field"><label>Photo(s) d'inspiration</label><div class="file"><input type="file" name="inspiration" accept="image/*" multiple></div></div>
    <p class="note">Les informations saisies dans ce formulaire sont destinées à la commande et ne sont pas affichées publiquement. La date indiquée est la date à laquelle tu souhaites avoir reçu ta carte.</p>
@@ -218,6 +218,19 @@ document.getElementById('orderForm').addEventListener('submit',function(e){
   deadline.setCustomValidity('');
 });
 deadline.addEventListener('input',function(){ this.setCustomValidity(''); });
+
+// Empêche de choisir une date de réception à moins de 7 jours de la commande.
+(function () {
+  const deadline = document.getElementById('deadline');
+  if (!deadline) return;
+  const minDate = new Date();
+  minDate.setHours(0, 0, 0, 0);
+  minDate.setDate(minDate.getDate() + 7);
+  const yyyy = minDate.getFullYear();
+  const mm = String(minDate.getMonth() + 1).padStart(2, '0');
+  const dd = String(minDate.getDate()).padStart(2, '0');
+  deadline.min = `${yyyy}-${mm}-${dd}`;
+})();
 </script>
 </body>
 </html>
