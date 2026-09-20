@@ -170,17 +170,21 @@ h1{font-size:56px;font-weight:400;line-height:1.05;margin:18px auto;max-width:80
   <button class="back" onclick="showPage('home')">← Retour</button>
   <h1 class="title">Créer ma carte sur mesure</h1>
   <p class="subtitle">Explique-moi exactement ce que tu imagines et ajoute tes photos d'inspiration.</p>
-  <form class="form" id="orderForm">
+  <form class="form" id="orderForm" action="https://formsubmit.co/fradj.nour13@gmail.com" method="POST" enctype="multipart/form-data">
+   <input type="hidden" name="_subject" value="Nouvelle demande — MAISON CARTÉA">
+   <input type="hidden" name="_template" value="table">
+   <input type="hidden" name="_captcha" value="true">
    <div class="field"><label>Prénom et nom</label><input required name="name" placeholder="Ex. Emma Dupont"></div>
    <div class="field"><label>E-mail</label><input required type="email" name="email" placeholder="exemple@email.com"></div>
    <div class="field"><label>Numéro de téléphone</label><input required type="tel" name="phone" placeholder="06 00 00 00 00"></div>
    <div class="field"><label>Adresse de livraison</label><textarea required name="address" placeholder="Numéro, rue, code postal, ville..."></textarea></div>
    <div class="field"><label>Occasion / thème</label><input name="occasion" placeholder="Anniversaire, naissance, mariage..."></div>
+   <div class="field"><label>Date limite souhaitée pour recevoir la carte</label><input required type="date" name="deadline" id="deadline"></div>
    <div class="field"><label>Décris exactement ta carte</label><textarea required name="idea" placeholder="Couleurs, texte, décorations, prénom, âge, style..."></textarea></div>
    <div class="field"><label>Photo(s) d'inspiration</label><div class="file"><input type="file" name="inspiration" accept="image/*" multiple></div></div>
-   <p class="note">Les informations saisies dans ce formulaire sont destinées à la commande et ne sont pas affichées publiquement.</p>
+   <p class="note">Les informations saisies dans ce formulaire sont destinées à la commande et ne sont pas affichées publiquement. La date indiquée est la date à laquelle tu souhaites avoir reçu ta carte.</p>
    <button class="cta" type="submit">ENVOYER MA DEMANDE ✦</button>
-   <div class="success" id="success">Ta demande est prête ! Pour recevoir réellement les commandes et les photos, il faudra connecter ce formulaire à une adresse e-mail ou à un service de formulaire.</div>
+   <div class="success" id="success">Merci ! Ta demande a bien été envoyée. Je reviendrai vers toi par e-mail pour confirmer la commande et les délais.</div>
   </form>
  </div>
 </section>
@@ -196,11 +200,24 @@ function showPage(id){
 function openCategory(cat){
   showPage('gallery');
 }
+const deadline = document.getElementById('deadline');
+if(deadline){
+  const today = new Date();
+  const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+  deadline.min = localToday;
+}
+
 document.getElementById('orderForm').addEventListener('submit',function(e){
-  e.preventDefault();
-  document.getElementById('success').style.display='block';
-  this.querySelector('button[type="submit"]').textContent='DEMANDE PRÉPARÉE ✓';
+  const selected = deadline.value;
+  if(selected && deadline.min && selected < deadline.min){
+    e.preventDefault();
+    deadline.setCustomValidity('Choisis une date à partir d’aujourd’hui.');
+    deadline.reportValidity();
+    return;
+  }
+  deadline.setCustomValidity('');
 });
+deadline.addEventListener('input',function(){ this.setCustomValidity(''); });
 </script>
 </body>
 </html>
