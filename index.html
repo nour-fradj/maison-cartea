@@ -62,9 +62,12 @@ h1{font-size:56px;font-weight:400;line-height:1.05;margin:18px auto;max-width:80
 .contactbox,.form{max-width:760px;margin:auto;background:var(--paper);border:1px solid var(--line);padding:34px;border-radius:16px}
 .contactbox{text-align:center}
 .phone{font-size:24px;margin:10px 0 22px}
-.socials{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:22px 0 24px}
-.social-link{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--ink);background:#fffdf9;font-weight:600;transition:transform .2s ease,box-shadow .2s ease}
-.social-link:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.07)}
+.socials-box{margin:22px auto 24px;background:#e8d8cc;border-radius:12px;padding:20px 24px;text-align:left}
+.socials-title{font-size:18px;margin-bottom:14px;color:var(--ink)}
+.socials-list{display:flex;flex-direction:column;gap:10px}
+.social-row{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink);font-size:15px;font-weight:600;padding:8px 4px;border-radius:8px;transition:background .2s ease}
+.social-row:hover{background:rgba(255,255,255,.35)}
+.social-logo{width:22px;height:22px;flex:0 0 22px;fill:currentColor}
 
 .field{margin-bottom:17px}
 .field label{display:block;font:11px Arial,sans-serif;text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px;color:var(--muted)}
@@ -169,9 +172,18 @@ h1{font-size:56px;font-weight:400;line-height:1.05;margin:18px auto;max-width:80
   <div class="contactbox">
    <div class="kicker">E-MAIL</div>
    <div class="phone"><a href="mailto:fradj.nour13@gmail.com" style="color:inherit;text-decoration:none">fradj.nour13@gmail.com</a></div>
-   <div class="socials">
-    <a class="social-link" href="https://www.pinterest.com/maisoncartea.pin/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest de MAISON CARTÉA">Pinterest · maisoncartea.pin</a>
-    <a class="social-link" href="https://www.youtube.com/@maisoncartea.yt" target="_blank" rel="noopener noreferrer" aria-label="YouTube de MAISON CARTÉA">YouTube · maisoncartea.yt</a>
+   <div class="socials-box">
+    <div class="socials-title">Mes réseaux :</div>
+    <div class="socials-list">
+      <a class="social-row" href="https://www.pinterest.com/maisoncartea.pin/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest de MAISON CARTÉA">
+        <svg class="social-logo pinterest-logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 0 0-3.46 18.35c-.08-1.56-.01-3.43.39-4.92l1.08-4.57s-.27-.54-.27-1.34c0-1.25.73-2.18 1.64-2.18.77 0 1.14.58 1.14 1.28 0 .78-.5 1.94-.76 3.02-.22.9.45 1.64 1.34 1.64 1.61 0 2.69-1.7 2.69-3.72 0-1.53-1.03-2.68-2.9-2.68-2.12 0-3.44 1.58-3.44 3.35 0 .61.18 1.04.46 1.41.13.17.15.24.1.44l-.16.64c-.05.2-.21.27-.39.2-1.07-.44-1.57-1.62-1.57-2.94 0-2.18 1.84-4.8 5.49-4.8 2.94 0 4.87 2.13 4.87 4.42 0 3.03-1.69 5.3-4.18 5.3-.84 0-1.62-.46-1.89-.98l-.53 2.08c-.19.76-.56 1.52-.9 2.11.8.24 1.64.37 2.51.37A9.5 9.5 0 1 0 12 2.5Z"/></svg>
+        <span>maisoncartea.pin</span>
+      </a>
+      <a class="social-row" href="https://www.youtube.com/@maisoncartea.yt" target="_blank" rel="noopener noreferrer" aria-label="YouTube de MAISON CARTÉA">
+        <svg class="social-logo youtube-logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.11-2.12C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.39.58A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.11 2.12c1.86.58 9.39.58 9.39.58s7.53 0 9.39-.58a3 3 0 0 0 2.11-2.12A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8ZM9.6 15.9V8.1l6.8 3.9-6.8 3.9Z"/></svg>
+        <span>maisoncartea.yt</span>
+      </a>
+    </div>
    </div>
    <p class="note">Pour toute question ou demande particulière, tu peux m’écrire directement par e-mail. Pour une commande, utilise le formulaire afin de transmettre tes informations et tes inspirations en privé.</p>
    <button class="cta" onclick="showPage('order')">CRÉER MA CARTE SUR MESURE →</button>
