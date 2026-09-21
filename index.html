@@ -62,6 +62,10 @@ h1{font-size:56px;font-weight:400;line-height:1.05;margin:18px auto;max-width:80
 .contactbox,.form{max-width:760px;margin:auto;background:var(--paper);border:1px solid var(--line);padding:34px;border-radius:16px}
 .contactbox{text-align:center}
 .phone{font-size:24px;margin:10px 0 22px}
+.socials{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:22px 0 24px}
+.social-link{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--ink);background:#fffdf9;font-weight:600;transition:transform .2s ease,box-shadow .2s ease}
+.social-link:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.07)}
+
 .field{margin-bottom:17px}
 .field label{display:block;font:11px Arial,sans-serif;text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px;color:var(--muted)}
 .field input,.field textarea,.field select{
@@ -164,7 +168,11 @@ h1{font-size:56px;font-weight:400;line-height:1.05;margin:18px auto;max-width:80
   <p class="subtitle">Une question ou une envie particulière ? N'hésite pas à me contacter.</p>
   <div class="contactbox">
    <div class="kicker">E-MAIL</div>
-   <div class="phone">fradj.nour13@gmail.com</div>
+   <div class="phone"><a href="mailto:fradj.nour13@gmail.com" style="color:inherit;text-decoration:none">fradj.nour13@gmail.com</a></div>
+   <div class="socials">
+    <a class="social-link" href="https://www.pinterest.com/maisoncartea.pin/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest de MAISON CARTÉA">Pinterest · maisoncartea.pin</a>
+    <a class="social-link" href="https://www.youtube.com/@maisoncartea.yt" target="_blank" rel="noopener noreferrer" aria-label="YouTube de MAISON CARTÉA">YouTube · maisoncartea.yt</a>
+   </div>
    <p class="note">Pour toute question ou demande particulière, tu peux m’écrire directement par e-mail. Pour une commande, utilise le formulaire afin de transmettre tes informations et tes inspirations en privé.</p>
    <button class="cta" onclick="showPage('order')">CRÉER MA CARTE SUR MESURE →</button>
   </div>
