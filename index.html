@@ -80,6 +80,23 @@ h1{font-size:56px;font-weight:400;line-height:1.05;margin:18px auto;max-width:80
 .success{display:none;background:#e8f0e6;padding:15px;border-radius:8px;margin-top:16px;font:13px Arial,sans-serif;line-height:1.5}
 .footer{border-top:1px solid var(--line);padding:30px;text-align:center;color:var(--muted);font-size:12px}
 .back{border:0;background:none;text-decoration:underline;padding:0;margin-bottom:25px;color:var(--ink)}
+
+.reviewbox{max-width:760px;margin:auto;background:var(--paper);border:1px solid var(--line);padding:34px;border-radius:16px}
+.review-summary{text-align:center;margin-bottom:28px}
+.review-stars{display:flex;justify-content:center;gap:5px;margin:14px 0}
+.review-star{border:0;background:none;font-size:31px;line-height:1;color:#cbb8ae;padding:2px;cursor:pointer;transition:transform .15s ease,color .15s ease}
+.review-star:hover{transform:scale(1.08)}
+.review-star.selected{color:#b88f7f}
+.review-form{margin-top:20px}
+.review-field{margin-bottom:16px}
+.review-field label{display:block;font-size:13px;font-weight:600;margin-bottom:7px}
+.review-field textarea{width:100%;min-height:105px;border:1px solid var(--line);border-radius:9px;padding:12px;background:#fff;font-family:inherit;resize:vertical;box-sizing:border-box}
+.review-list{margin-top:34px;display:grid;gap:12px}
+.review-item{border-top:1px solid var(--line);padding:18px 0}
+.review-item-stars{letter-spacing:2px;color:#b88f7f;font-size:18px}
+.review-item-comment{margin:8px 0 0;line-height:1.55;color:var(--ink)}
+.review-empty{text-align:center;color:var(--muted);font-size:14px;padding:12px 0}
+.review-success{display:none;background:#e8f0e6;padding:15px;border-radius:8px;margin-top:16px;font-size:13px;line-height:1.5}
 @media(max-width:800px){
  .nav{grid-template-columns:1fr auto;padding:12px 15px}.brand{grid-column:1/2;grid-row:1;font-size:21px}.brand small{display:none}
  .navlinks{grid-column:1/3;grid-row:2;justify-content:center;gap:15px}.navright{grid-column:2;grid-row:1}
@@ -102,11 +119,11 @@ h1{font-size:56px;font-weight:400;line-height:1.05;margin:18px auto;max-width:80
       <button onclick="showPage('gallery')">Galerie</button>
       <button onclick="showPage('about')">À propos</button>
       <button onclick="showPage('contact')">Contact</button>
+      <button onclick="showPage('reviews')">Avis</button>
     </div>
     <div class="brand">MAISON CARTÉA<small>CARTES ARTISANALES &amp; PERSONNALISÉES</small></div>
     <div class="navright">
       <button class="custom" onclick="showPage('order')">Créer ma carte sur mesure ♡</button>
-      <span class="bag">♡</span>
     </div>
   </nav>
 </header>
@@ -187,6 +204,33 @@ h1{font-size:56px;font-weight:400;line-height:1.05;margin:18px auto;max-width:80
    </div>
    <p class="note">Pour toute question ou demande particulière, tu peux m’écrire directement par e-mail. Pour une commande, utilise le formulaire afin de transmettre tes informations et tes inspirations en privé.</p>
    <button class="cta" onclick="showPage('order')">CRÉER MA CARTE SUR MESURE →</button>
+  </div>
+ </div>
+</section>
+
+<section id="reviews" class="page">
+ <div class="section">
+  <h1 class="title">Avis</h1>
+  <p class="subtitle">Partage ton expérience avec MAISON CARTÉA.</p>
+  <div class="reviewbox">
+   <div class="review-summary">
+    <div class="kicker">TON AVIS</div>
+    <h2>Quelle note donnerais-tu ?</h2>
+    <div class="review-stars" id="reviewStars" aria-label="Choisir une note sur cinq étoiles">
+      <button class="review-star" type="button" data-rating="1" aria-label="1 étoile">★</button>
+      <button class="review-star" type="button" data-rating="2" aria-label="2 étoiles">★</button>
+      <button class="review-star" type="button" data-rating="3" aria-label="3 étoiles">★</button>
+      <button class="review-star" type="button" data-rating="4" aria-label="4 étoiles">★</button>
+      <button class="review-star" type="button" data-rating="5" aria-label="5 étoiles">★</button>
+    </div>
+   </div>
+   <form class="review-form" id="reviewForm">
+    <div class="review-field"><label for="reviewName">Prénom</label><input id="reviewName" required placeholder="Ton prénom"></div>
+    <div class="review-field"><label for="reviewComment">Commentaire</label><textarea id="reviewComment" required placeholder="Écris ton avis ici..."></textarea></div>
+    <button class="cta" type="submit">PUBLIER MON AVIS ✦</button>
+    <div class="review-success" id="reviewSuccess">Merci pour ton avis ! Il apparaît maintenant dans cette page.</div>
+   </form>
+   <div class="review-list" id="reviewList"></div>
   </div>
  </div>
 </section>
@@ -285,6 +329,32 @@ document.getElementById('lightbox').addEventListener('click',function(e){
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape') closeLightbox();
 });
+
+(function(){
+  const stars=[...document.querySelectorAll('.review-star')];
+  const form=document.getElementById('reviewForm');
+  const list=document.getElementById('reviewList');
+  const success=document.getElementById('reviewSuccess');
+  let rating=0;
+  function paint(){stars.forEach(star=>star.classList.toggle('selected',Number(star.dataset.rating)<=rating));}
+  stars.forEach(star=>star.addEventListener('click',()=>{rating=Number(star.dataset.rating);paint();}));
+  function render(){
+    const reviews=JSON.parse(localStorage.getItem('maisonCarteaReviews')||'[]');
+    if(!reviews.length){list.innerHTML='<div class="review-empty">Aucun avis pour le moment. Sois la première personne à laisser une note !</div>';return;}
+    list.innerHTML=reviews.slice().reverse().map(r=>`<div class="review-item"><div class="review-item-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div><strong>${escapeHtml(r.name)}</strong><p class="review-item-comment">${escapeHtml(r.comment)}</p></div>`).join('');
+  }
+  function escapeHtml(value){const d=document.createElement('div');d.textContent=value;return d.innerHTML;}
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    if(!rating){stars[0].focus();return;}
+    const reviews=JSON.parse(localStorage.getItem('maisonCarteaReviews')||'[]');
+    reviews.push({name:document.getElementById('reviewName').value.trim(),comment:document.getElementById('reviewComment').value.trim(),rating});
+    localStorage.setItem('maisonCarteaReviews',JSON.stringify(reviews));
+    form.reset();rating=0;paint();success.style.display='block';render();
+    setTimeout(()=>success.style.display='none',3500);
+  });
+  render();
+})();
 </script>
 </body>
 </html>
