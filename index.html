@@ -136,11 +136,11 @@ h1{font-size:56px;font-weight:400;line-height:1.05;margin:18px auto;max-width:80
     <p class="subtitle">Explore les différentes catégories de cartes et trouve l'inspiration pour ta prochaine création.</p>
     <div class="categories">
       <div class="cat" onclick="openCategory('anniversaire')"><h3>Anniversaires</h3><span>Découvrir les cartes →</span></div>
-      <div class="cat"><h3>Remerciements</h3><span>Bientôt disponible</span></div>
-      <div class="cat"><h3>Fêtes religieuses</h3><span>Bientôt disponible</span></div>
-      <div class="cat"><h3>Naissances</h3><span>Bientôt disponible</span></div>
-      <div class="cat"><h3>Mariages</h3><span>Bientôt disponible</span></div>
-      <div class="cat"><h3>Retraite</h3><span>Bientôt disponible</span></div>
+      <div class="cat" onclick="openCategory('remerciements')"><h3>Remerciements</h3><span>Découvrir les cartes →</span></div>
+      <div class="cat" onclick="openCategory('religieux')"><h3>Fêtes religieuses</h3><span>Découvrir les cartes →</span></div>
+      <div class="cat" onclick="openCategory('naissance')"><h3>Naissances</h3><span>Découvrir les cartes →</span></div>
+      <div class="cat" onclick="openCategory('mariage')"><h3>Mariages</h3><span>Découvrir les cartes →</span></div>
+      <div class="cat" onclick="openCategory('retraite')"><h3>Retraite</h3><span>Découvrir les cartes →</span></div>
     </div>
   </div>
 </section>
@@ -149,17 +149,28 @@ h1{font-size:56px;font-weight:400;line-height:1.05;margin:18px auto;max-width:80
  <div class="section">
   <div class="gallery-layout">
    <aside class="sidebar">
-    <button class="active" onclick="openCategory('anniversaire')">♡ &nbsp; Anniversaires</button>
-    <button>♡ &nbsp; Remerciements</button><button>☆ &nbsp; Fêtes religieuses</button>
-    <button>♧ &nbsp; Naissances</button><button>♡ &nbsp; Mariages</button><button>✦ &nbsp; Retraite</button>
+    <button class="active" data-cat="anniversaire" onclick="openCategory('anniversaire')">♡ &nbsp; Anniversaires</button>
+    <button data-cat="remerciements" onclick="openCategory('remerciements')">♡ &nbsp; Remerciements</button>
+    <button data-cat="religieux" onclick="openCategory('religieux')">☆ &nbsp; Fêtes religieuses</button>
+    <button data-cat="naissance" onclick="openCategory('naissance')">♧ &nbsp; Naissances</button>
+    <button data-cat="mariage" onclick="openCategory('mariage')">♡ &nbsp; Mariages</button>
+    <button data-cat="retraite" onclick="openCategory('retraite')">✦ &nbsp; Retraite</button>
    </aside>
    <div>
-    <div class="gallery-head"><div class="kicker">GALERIE</div><h2>Anniversaires</h2><p class="subtitle">Découvre les cartes imaginées pour souhaiter un joyeux anniversaire.</p></div>
-    <div class="cards">
-      <article class="card"><img src="anniversaire_1.jpeg" alt="Carte Happy Birthday avec gâteau, fleurs et ourson"><div class="cardinfo"><div class="creation-origin" data-origin="1"><span class="origin-option checked" data-value="made">☑ Faite par moi</span><span class="origin-option" data-value="inspiration">☐ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>Happy Birthday</h3><div class="price">4,50 €</div><p>Une carte colorée et joyeuse, parfaite pour faire sourire !</p><button class="cardbtn" onclick="showPage('order')">Demander cette carte →</button></div></article>
-      <article class="card"><img src="anniversaire_2.jpeg" alt="Carte anniversaire 8 ans avec voiture et ballons"><div class="cardinfo"><div class="creation-origin" data-origin="2"><span class="origin-option checked" data-value="made">☑ Faite par moi</span><span class="origin-option" data-value="inspiration">☐ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>8 ans !</h3><div class="price">4,00 €</div><p>Une carte pleine de bonne humeur pour un anniversaire inoubliable.</p><button class="cardbtn" onclick="showPage('order')">Demander cette carte →</button></div></article>
-      <article class="card"><img src="anniversaire_3.jpeg" alt="Carte premier anniversaire avec éléphant"><div class="cardinfo"><div class="creation-origin" data-origin="3"><span class="origin-option checked" data-value="made">☑ Faite par moi</span><span class="origin-option" data-value="inspiration">☐ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>1 an</h3><div class="price">4,50 €</div><p>Une carte douce et tendre pour célébrer un premier anniversaire.</p><button class="cardbtn" onclick="showPage('order')">Demander cette carte →</button></div></article>
-      <article class="card"><img src="anniversaire_4.jpeg" alt="Carte anniversaire avec éléphant et ballons"><div class="cardinfo"><div class="creation-origin" data-origin="4"><span class="origin-option checked" data-value="made">☑ Faite par moi</span><span class="origin-option" data-value="inspiration">☐ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>Joyeux anniversaire</h3><div class="price">4,50 €</div><p>Une création personnalisée avec prénom et âge.</p><button class="cardbtn" onclick="showPage('order')">Demander cette carte →</button></div></article>
+    <div class="gallery-head"><div class="kicker">GALERIE</div><h2 id="galleryTitle">Anniversaires</h2><p class="subtitle" id="gallerySubtitle">Découvre les cartes imaginées pour souhaiter un joyeux anniversaire.</p></div>
+    <div class="cards" id="galleryCards">
+      <article class="card" data-category="anniversaire"><img src="anniversaire_1.jpeg" alt="Carte Happy Birthday avec gâteau, fleurs et ourson"><div class="cardinfo"><div class="creation-origin" data-origin="1" data-default="made"><span class="origin-option checked" data-value="made">☑ Faite par moi</span><span class="origin-option" data-value="inspiration">☐ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>Happy Birthday</h3><div class="price">4,50 €</div><p>Une carte colorée et joyeuse, parfaite pour faire sourire !</p><button class="cardbtn" onclick="selectCardForOrder(this)">Demander cette carte →</button></div></article>
+      <article class="card" data-category="anniversaire"><img src="anniversaire_2.jpeg" alt="Carte anniversaire 8 ans avec voiture et ballons"><div class="cardinfo"><div class="creation-origin" data-origin="2" data-default="made"><span class="origin-option checked" data-value="made">☑ Faite par moi</span><span class="origin-option" data-value="inspiration">☐ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>8 ans !</h3><div class="price">4,00 €</div><p>Une carte pleine de bonne humeur pour un anniversaire inoubliable.</p><button class="cardbtn" onclick="selectCardForOrder(this)">Demander cette carte →</button></div></article>
+      <article class="card" data-category="anniversaire"><img src="anniversaire_3.jpeg" alt="Carte premier anniversaire avec éléphant"><div class="cardinfo"><div class="creation-origin" data-origin="3" data-default="made"><span class="origin-option checked" data-value="made">☑ Faite par moi</span><span class="origin-option" data-value="inspiration">☐ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>1 an</h3><div class="price">4,50 €</div><p>Une carte douce et tendre pour célébrer un premier anniversaire.</p><button class="cardbtn" onclick="selectCardForOrder(this)">Demander cette carte →</button></div></article>
+      <article class="card" data-category="anniversaire"><img src="anniversaire_4.jpeg" alt="Carte anniversaire avec éléphant et ballons"><div class="cardinfo"><div class="creation-origin" data-origin="4" data-default="made"><span class="origin-option checked" data-value="made">☑ Faite par moi</span><span class="origin-option" data-value="inspiration">☐ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>Joyeux anniversaire</h3><div class="price">4,50 €</div><p>Une création personnalisée avec prénom et âge.</p><button class="cardbtn" onclick="selectCardForOrder(this)">Demander cette carte →</button></div></article>
+      <article class="card" data-category="mariage"><img src="mariage_1.png" alt="Carte mariage avec gâteau fleuri et mariés"><div class="cardinfo"><div class="creation-origin" data-origin="5" data-default="inspiration"><span class="origin-option" data-value="made">☐ Faite par moi</span><span class="origin-option checked" data-value="inspiration">☑ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>Congratulations</h3><div class="price">—</div><p>Une idée élégante pour féliciter les jeunes mariés.</p><button class="cardbtn" onclick="selectCardForOrder(this)">S'inspirer de cette carte →</button></div></article>
+      <article class="card" data-category="mariage"><img src="mariage_2.png" alt="Carte de mariage avec alliances fleuries"><div class="cardinfo"><div class="creation-origin" data-origin="6" data-default="inspiration"><span class="origin-option" data-value="made">☐ Faite par moi</span><span class="origin-option checked" data-value="inspiration">☑ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>Alex &amp; Sofia</h3><div class="price">—</div><p>Une inspiration délicate autour des alliances et des fleurs.</p><button class="cardbtn" onclick="selectCardForOrder(this)">S'inspirer de cette carte →</button></div></article>
+      <article class="card" data-category="retraite"><img src="retraite_1.png" alt="Carte de retraite avec panneau Bienvenue au pays de la retraite martine"><div class="cardinfo"><div class="creation-origin" data-origin="7" data-default="made"><span class="origin-option checked" data-value="made">☑ Faite par moi</span><span class="origin-option" data-value="inspiration">☐ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>Bienvenue à la retraite</h3><div class="price">—</div><p>Une création colorée sur le thème du voyage et de la détente.</p><button class="cardbtn" onclick="selectCardForOrder(this)">Demander cette carte →</button></div></article>
+      <article class="card" data-category="naissance"><img src="naissance_1.png" alt="Carte Baby Girl rose avec oursons et étoile"><div class="cardinfo"><div class="creation-origin" data-origin="8" data-default="made"><span class="origin-option checked" data-value="made">☑ Faite par moi</span><span class="origin-option" data-value="inspiration">☐ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>Baby Girl</h3><div class="price">—</div><p>Une carte tendre et colorée pour célébrer une naissance.</p><button class="cardbtn" onclick="selectCardForOrder(this)">Demander cette carte →</button></div></article>
+      <article class="card" data-category="religieux"><img src="fete_religieuse_1.png" alt="Carte Eid Mubarak avec lune, étoile et fleurs"><div class="cardinfo"><div class="creation-origin" data-origin="9" data-default="inspiration"><span class="origin-option" data-value="made">☐ Faite par moi</span><span class="origin-option checked" data-value="inspiration">☑ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>Eid Mubarak</h3><div class="price">—</div><p>Une inspiration élégante pour souhaiter une belle fête de l'Aïd.</p><button class="cardbtn" onclick="selectCardForOrder(this)">S'inspirer de cette carte →</button></div></article>
+      <article class="card" data-category="religieux"><img src="fete_religieuse_2.png" alt="Carte de baptême pour Louison"><div class="cardinfo"><div class="creation-origin" data-origin="10" data-default="inspiration"><span class="origin-option" data-value="made">☐ Faite par moi</span><span class="origin-option checked" data-value="inspiration">☑ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>Baptême</h3><div class="price">—</div><p>Une inspiration douce pour célébrer un baptême.</p><button class="cardbtn" onclick="selectCardForOrder(this)">S'inspirer de cette carte →</button></div></article>
+      <article class="card" data-category="remerciements"><img src="remerciements_1.png" alt="Carte Thank You avec plantes souriantes"><div class="cardinfo"><div class="creation-origin" data-origin="11" data-default="inspiration"><span class="origin-option" data-value="made">☐ Faite par moi</span><span class="origin-option checked" data-value="inspiration">☑ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>Thank You</h3><div class="price">—</div><p>Une inspiration joyeuse pour remercier quelqu'un.</p><button class="cardbtn" onclick="selectCardForOrder(this)">S'inspirer de cette carte →</button></div></article>
+      <article class="card" data-category="remerciements"><img src="remerciements_2.png" alt="Carte Merci maîtresse avec une chouette"><div class="cardinfo"><div class="creation-origin" data-origin="12" data-default="inspiration"><span class="origin-option" data-value="made">☐ Faite par moi</span><span class="origin-option checked" data-value="inspiration">☑ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>Merci maîtresse</h3><div class="price">—</div><p>Une inspiration originale pour dire merci à une maîtresse.</p><button class="cardbtn" onclick="selectCardForOrder(this)">S'inspirer de cette carte →</button></div></article>
     </div>
    </div>
   </div>
@@ -245,8 +256,58 @@ function showPage(id){
   document.getElementById(id).classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 }
+
+// Préremplit la demande avec la carte choisie et joint automatiquement sa photo.
+async function selectCardForOrder(button){
+  const card=button.closest('.card');
+  if(!card) return;
+  const img=card.querySelector('img');
+  const title=card.querySelector('h3')?.textContent.trim() || 'Carte sélectionnée';
+  const category=card.dataset.category || '';
+  const idea=document.querySelector('textarea[name="idea"]');
+  const occasion=document.querySelector('input[name="occasion"]');
+  const fileInput=document.querySelector('input[name="inspiration"]');
+
+  if(occasion && !occasion.value){
+    const names={anniversaire:'Anniversaire',remerciements:'Remerciements',religieux:'Fête religieuse',naissance:'Naissance',mariage:'Mariage',retraite:'Retraite'};
+    occasion.value=names[category] || '';
+  }
+  if(idea){
+    const reference=`Je souhaite une carte inspirée de « ${title} ».`;
+    if(!idea.value.trim() || idea.dataset.autoReference==='true'){
+      idea.value=reference + '\n\n';
+      idea.dataset.autoReference='true';
+    } else if(!idea.value.includes(`« ${title} »`)){
+      idea.value += `\n\n${reference}`;
+    }
+  }
+
+  showPage('order');
+
+  if(!img || !fileInput) return;
+  try{
+    const response=await fetch(img.getAttribute('src'), {cache:'no-cache'});
+    if(!response.ok) throw new Error('Image introuvable');
+    const blob=await response.blob();
+    const ext=(blob.type.split('/')[1] || 'png').replace('jpeg','jpg');
+    const file=new File([blob], `inspiration-${title.toLowerCase().replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'')}.${ext}`, {type:blob.type || 'image/png'});
+    const transfer=new DataTransfer();
+    Array.from(fileInput.files || []).forEach(existing=>transfer.items.add(existing));
+    transfer.items.add(file);
+    fileInput.files=transfer.files;
+  }catch(error){
+    console.warn('Impossible de joindre automatiquement la carte de référence.', error);
+  }
+}
 function openCategory(cat){
   showPage('gallery');
+  const names={anniversaire:'Anniversaires',remerciements:'Remerciements',religieux:'Fêtes religieuses',naissance:'Naissances',mariage:'Mariages',retraite:'Retraite'};
+  const subtitles={anniversaire:'Découvre les cartes imaginées pour souhaiter un joyeux anniversaire.',remerciements:'Des idées pour dire merci avec une jolie carte.',religieux:'Des inspirations pour les fêtes religieuses et les grands moments de foi.',naissance:'Des cartes douces pour célébrer une naissance.',mariage:'Des inspirations pour féliciter les mariés.',retraite:'Des idées pour souhaiter une belle retraite.'};
+  document.getElementById('galleryTitle').textContent=names[cat]||'Galerie';
+  document.getElementById('gallerySubtitle').textContent=subtitles[cat]||'';
+  document.querySelectorAll('#galleryCards .card').forEach(card=>{card.style.display=card.dataset.category===cat?'block':'none';});
+  document.querySelectorAll('.sidebar button[data-cat]').forEach(btn=>btn.classList.toggle('active',btn.dataset.cat===cat));
+  // Rebind lightbox after filtering (listeners remain on all cards, but this keeps the gallery behavior explicit).
 }
 const deadline = document.getElementById('deadline');
 if(deadline){
@@ -312,7 +373,7 @@ document.addEventListener('keydown',function(e){
 
   function applyStates(){
     cards.forEach(box=>{
-      const state=states[box.dataset.origin] || 'made';
+      const state=states[box.dataset.origin] || box.dataset.default || 'inspiration';
       box.querySelectorAll('.origin-option').forEach(option=>{
         const active=option.dataset.value===state;
         option.classList.toggle('checked',active);
