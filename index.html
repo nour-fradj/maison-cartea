@@ -94,6 +94,17 @@ h1{font-size:56px;font-weight:400;line-height:1.05;margin:18px auto;max-width:80
 .lightbox img{max-width:min(100%,1000px);max-height:90vh;width:auto;height:auto;object-fit:contain;border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
 .lightbox-close{position:absolute;top:18px;right:24px;border:0;background:none;color:#fff;font-size:38px;line-height:1;cursor:pointer}
 .cards .card img{cursor:zoom-in}
+
+    .creation-origin{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 2px}
+    .origin-option{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border:1px solid #ded6cf;border-radius:9px;background:#fffaf6;font-size:11px;color:#5b514b}
+    .origin-option.checked{border-color:#b89d8d;background:#f8efe9}
+    .origin-option input{accent-color:#8d6f61;margin:0}
+    .admin-note{display:none;font-size:11px;color:#7b6d64;margin:4px 0 0}
+    body.admin-mode .admin-note{display:block}
+    .admin-tools{display:none;position:fixed;right:18px;bottom:18px;z-index:900;background:#fffaf6;border:1px solid #d8cbc1;border-radius:14px;padding:12px 14px;box-shadow:0 10px 30px rgba(60,40,30,.12);font-size:12px;color:#5b514b}
+    body.admin-mode .admin-tools{display:block}
+    .admin-tools button{margin-top:7px;border:1px solid #cdbdb1;background:#fff;border-radius:8px;padding:6px 9px;cursor:pointer;color:#5b514b}
+    .admin-tools button:hover{background:#f8efe9}
 </style>
 </head>
 <body>
@@ -145,10 +156,10 @@ h1{font-size:56px;font-weight:400;line-height:1.05;margin:18px auto;max-width:80
    <div>
     <div class="gallery-head"><div class="kicker">GALERIE</div><h2>Anniversaires</h2><p class="subtitle">Découvre les cartes imaginées pour souhaiter un joyeux anniversaire.</p></div>
     <div class="cards">
-      <article class="card"><img src="anniversaire_1.jpeg" alt="Carte Happy Birthday avec gâteau, fleurs et ourson"><div class="cardinfo"><h3>Happy Birthday</h3><div class="price">4,50 €</div><p>Une carte colorée et joyeuse, parfaite pour faire sourire !</p><button class="cardbtn" onclick="showPage('order')">Demander cette carte →</button></div></article>
-      <article class="card"><img src="anniversaire_2.jpeg" alt="Carte anniversaire 8 ans avec voiture et ballons"><div class="cardinfo"><h3>8 ans !</h3><div class="price">4,00 €</div><p>Une carte pleine de bonne humeur pour un anniversaire inoubliable.</p><button class="cardbtn" onclick="showPage('order')">Demander cette carte →</button></div></article>
-      <article class="card"><img src="anniversaire_3.jpeg" alt="Carte premier anniversaire avec éléphant"><div class="cardinfo"><h3>1 an</h3><div class="price">4,50 €</div><p>Une carte douce et tendre pour célébrer un premier anniversaire.</p><button class="cardbtn" onclick="showPage('order')">Demander cette carte →</button></div></article>
-      <article class="card"><img src="anniversaire_4.jpeg" alt="Carte anniversaire avec éléphant et ballons"><div class="cardinfo"><h3>Joyeux anniversaire</h3><div class="price">4,50 €</div><p>Une création personnalisée avec prénom et âge.</p><button class="cardbtn" onclick="showPage('order')">Demander cette carte →</button></div></article>
+      <article class="card"><img src="anniversaire_1.jpeg" alt="Carte Happy Birthday avec gâteau, fleurs et ourson"><div class="cardinfo"><div class="creation-origin" data-origin="1"><span class="origin-option checked" data-value="made">☑ Faite par moi</span><span class="origin-option" data-value="inspiration">☐ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>Happy Birthday</h3><div class="price">4,50 €</div><p>Une carte colorée et joyeuse, parfaite pour faire sourire !</p><button class="cardbtn" onclick="showPage('order')">Demander cette carte →</button></div></article>
+      <article class="card"><img src="anniversaire_2.jpeg" alt="Carte anniversaire 8 ans avec voiture et ballons"><div class="cardinfo"><div class="creation-origin" data-origin="2"><span class="origin-option checked" data-value="made">☑ Faite par moi</span><span class="origin-option" data-value="inspiration">☐ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>8 ans !</h3><div class="price">4,00 €</div><p>Une carte pleine de bonne humeur pour un anniversaire inoubliable.</p><button class="cardbtn" onclick="showPage('order')">Demander cette carte →</button></div></article>
+      <article class="card"><img src="anniversaire_3.jpeg" alt="Carte premier anniversaire avec éléphant"><div class="cardinfo"><div class="creation-origin" data-origin="3"><span class="origin-option checked" data-value="made">☑ Faite par moi</span><span class="origin-option" data-value="inspiration">☐ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>1 an</h3><div class="price">4,50 €</div><p>Une carte douce et tendre pour célébrer un premier anniversaire.</p><button class="cardbtn" onclick="showPage('order')">Demander cette carte →</button></div></article>
+      <article class="card"><img src="anniversaire_4.jpeg" alt="Carte anniversaire avec éléphant et ballons"><div class="cardinfo"><div class="creation-origin" data-origin="4"><span class="origin-option checked" data-value="made">☑ Faite par moi</span><span class="origin-option" data-value="inspiration">☐ Simple inspiration</span></div><p class="admin-note">Mode créatrice : clique sur une option pour modifier le statut.</p><h3>Joyeux anniversaire</h3><div class="price">4,50 €</div><p>Une création personnalisée avec prénom et âge.</p><button class="cardbtn" onclick="showPage('order')">Demander cette carte →</button></div></article>
     </div>
    </div>
   </div>
@@ -221,6 +232,11 @@ h1{font-size:56px;font-weight:400;line-height:1.05;margin:18px auto;max-width:80
  <button class="lightbox-close" type="button" aria-label="Fermer" onclick="closeLightbox()">×</button>
  <img id="lightboxImage" src="" alt="Aperçu de la carte">
 </div>
+<div class="admin-tools" id="adminTools">
+  <strong>Mode créatrice</strong><br>
+  Les statuts sont modifiables uniquement dans ce mode.
+  <br><button type="button" onclick="logoutAdmin()">Quitter le mode créatrice</button>
+</div>
 
 
 <script>
@@ -286,6 +302,68 @@ document.getElementById('lightbox').addEventListener('click',function(e){
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape') closeLightbox();
 });
+
+// Les visiteurs voient seulement le statut. Le mode créatrice est accessible avec ?admin=1.
+(function(){
+  const ADMIN_PASSWORD_HASH = 'e2c8b9d2a7f7d4c6d2b3f7f8a4d1e3c2b6d8a9f0e1c4b7a2d6f9e8c3b5a1d7';
+  const KEY='maisoncartea_admin_status';
+  const states = JSON.parse(localStorage.getItem(KEY) || '{}');
+  const cards = document.querySelectorAll('.creation-origin[data-origin]');
+
+  function applyStates(){
+    cards.forEach(box=>{
+      const state=states[box.dataset.origin] || 'made';
+      box.querySelectorAll('.origin-option').forEach(option=>{
+        const active=option.dataset.value===state;
+        option.classList.toggle('checked',active);
+        option.textContent=(active?'☑ ':'☐ ')+(option.dataset.value==='made'?'Faite par moi':'Simple inspiration');
+      });
+    });
+  }
+
+  async function hash(text){
+    const data=new TextEncoder().encode(text);
+    const digest=await crypto.subtle.digest('SHA-256',data);
+    return Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  }
+
+  function enableAdmin(){
+    document.body.classList.add('admin-mode');
+    cards.forEach(box=>{
+      box.querySelectorAll('.origin-option').forEach(option=>{
+        option.style.cursor='pointer';
+        option.onclick=()=>{
+          states[box.dataset.origin]=option.dataset.value;
+          localStorage.setItem(KEY,JSON.stringify(states));
+          applyStates();
+        };
+      });
+    });
+    applyStates();
+  }
+
+  window.logoutAdmin=function(){
+    document.body.classList.remove('admin-mode');
+    cards.forEach(box=>box.querySelectorAll('.origin-option').forEach(option=>{option.onclick=null;option.style.cursor='default';}));
+    applyStates();
+    history.replaceState(null,'',location.pathname);
+  };
+
+  applyStates();
+
+  if(new URLSearchParams(location.search).get('admin')==='1'){
+    setTimeout(async()=>{
+      const pass=prompt('Mot de passe de l’espace créatrice :');
+      if(pass===null) return;
+      if(await hash(pass)===ADMIN_PASSWORD_HASH){
+        enableAdmin();
+      }else{
+        alert('Mot de passe incorrect.');
+        history.replaceState(null,'',location.pathname);
+      }
+    },100);
+  }
+})();
 
 </script>
 </body>
